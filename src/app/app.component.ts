@@ -14,8 +14,21 @@ export class AppComponent {
 
   constructor() {
     console.log('simulating HTTP requests');
+
     const http1$ = simulateHttp("1", 2000);
     const http2$ = simulateHttp("2", 1000);
+
+    http1$.subscribe(
+      console.log,
+      console.error,
+      () => console.log('http1$ completed')
+    );
+
+    http2$.subscribe(
+      console.log,
+      console.error,
+      () => console.log('http2$ completed')
+    );
   }
 }
 
