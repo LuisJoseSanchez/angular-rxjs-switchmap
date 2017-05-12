@@ -58,6 +58,7 @@ export class AppComponent {
 
     // Example 3
 
+    /*
     const firebase1$ = simulateFirebase("FB-1 ", 5000);
     const firebase2$ = simulateFirebase("FB-2 ", 1000);
 
@@ -71,6 +72,26 @@ export class AppComponent {
       console.log,
       console.error,
       () => console.log('firebase2$ completed')
+    );
+    */
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    // Example 4
+
+
+    const firebase1$ = simulateFirebase("FB-1 ", 5000);
+    const firebase2$ = simulateFirebase("FB-2 ", 1000);
+
+    const firebaseResult$ = firebase1$.switchMap(sourceValue => {
+      console.log("source value " + sourceValue);
+      return simulateFirebase("inner observable ", 1000)
+    });
+
+    firebaseResult$.subscribe(
+      console.log,
+      console.error,
+      () => console.log('completed firebaseResult$')
     );
 
   }
