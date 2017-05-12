@@ -93,11 +93,11 @@ export class AppComponent {
       () => console.log('completed firebaseResult$')
     );
     */
-    
+
     ///////////////////////////////////////////////////////////////////////////
 
     // Example 5
-
+    /*
     const course$ = simulateHttp({id:1, description: 'Angular For Beginners'}, 1000);
 
     const httpResult$ = course$.switchMap(
@@ -108,6 +108,23 @@ export class AppComponent {
       console.error,
       () => console.log('completed httpResult$')
     );
+    */
+    ///////////////////////////////////////////////////////////////////////////
+
+    // Example 6
+
+    const course$ = simulateHttp({id:1, description: 'Angular For Beginners'}, 1000);
+
+    const httpResult$ = course$.switchMap(
+      courses => simulateHttp([], 2000),
+      (courses, lessons, outerIndex, innerIndex) => [courses, lessons] );
+
+    httpResult$.subscribe(
+      console.log,
+      console.error,
+      () => console.log('completed httpResult$')
+    );
+
 
   }
 }
