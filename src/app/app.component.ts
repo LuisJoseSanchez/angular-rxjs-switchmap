@@ -78,8 +78,7 @@ export class AppComponent {
     ///////////////////////////////////////////////////////////////////////////
 
     // Example 4
-
-
+    /*
     const firebase1$ = simulateFirebase("FB-1 ", 5000);
     const firebase2$ = simulateFirebase("FB-2 ", 1000);
 
@@ -92,6 +91,22 @@ export class AppComponent {
       console.log,
       console.error,
       () => console.log('completed firebaseResult$')
+    );
+    */
+    
+    ///////////////////////////////////////////////////////////////////////////
+
+    // Example 5
+
+    const course$ = simulateHttp({id:1, description: 'Angular For Beginners'}, 1000);
+
+    const httpResult$ = course$.switchMap(
+      sourceValue => simulateHttp(["... returns a lessons array ..."], 2000));
+
+    httpResult$.subscribe(
+      console.log,
+      console.error,
+      () => console.log('completed httpResult$')
     );
 
   }
