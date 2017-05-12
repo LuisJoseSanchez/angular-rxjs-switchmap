@@ -39,20 +39,40 @@ export class AppComponent {
     ///////////////////////////////////////////////////////////////////////////
 
     // Example 2
+    /*
+      const saveUser$ = simulateHttp(" user saved ", 1000);
+  
+      const httpResult$ = saveUser$.switchMap(sourceValue => {
+        console.log(sourceValue);
+        return simulateHttp(" data reloaded ", 2000);
+      });
+  
+  
+      httpResult$.subscribe(
+        console.log,
+        console.error,
+        () => console.log('completed httpResult$')
+      );
+    */
+    ///////////////////////////////////////////////////////////////////////////
 
-    const saveUser$ = simulateHttp(" user saved ", 1000);
+    // Example 3
 
-    const httpResult$ = saveUser$.switchMap(sourceValue => {
-      console.log(sourceValue);
-      return simulateHttp(" data reloaded ", 2000);
-    });
+    const firebase1$ = simulateFirebase("FB-1 ", 5000);
+    const firebase2$ = simulateFirebase("FB-2 ", 1000);
 
-
-    httpResult$.subscribe(
+    firebase1$.subscribe(
       console.log,
       console.error,
-      () => console.log('completed httpResult$')
+      () => console.log('firebase1$ completed')
     );
+
+    firebase2$.subscribe(
+      console.log,
+      console.error,
+      () => console.log('firebase2$ completed')
+    );
+
   }
 }
 
